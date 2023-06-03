@@ -307,17 +307,20 @@ M.async_highlights.load_lsp = function()
         LspReferenceRead           = { link = "LspReferenceText" }, -- used for highlighting "read" references
         LspReferenceWrite          = { link = "LspReferenceText" }, -- used for highlighting "write" references
         LspCodeLens                = { link = "DiagnosticHint" },
-
-        ["@lsp.type.enum"]       = { link = "@type" },
-        ["@lsp.type.keyword"]    = { link = "@keyword" },
-        ["@lsp.type.interface"]  = { link = "Identifier" },
-        ["@lsp.type.namespace"]  = { link = "@namespace" },
-        ["@lsp.type.parameter"]  = { link = "@parameter" },
-        ["@lsp.type.property"]   = { link = "@property" },
-
-        ["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
-        ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
     }
+	if vim.fn.has("nvim-0.8.0") == 1 then
+		lsp_hls = vim.tbl_extend("error", lsp_hls, {
+			["@lsp.type.enum"]       = { link = "@type" },
+			["@lsp.type.keyword"]    = { link = "@keyword" },
+			["@lsp.type.interface"]  = { link = "Identifier" },
+			["@lsp.type.namespace"]  = { link = "@namespace" },
+			["@lsp.type.parameter"]  = { link = "@parameter" },
+			["@lsp.type.property"]   = { link = "@property" },
+
+			["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
+			["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
+		})
+	end
 
     return lsp_hls
 end
